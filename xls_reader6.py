@@ -12,7 +12,8 @@ def getDirList(path):
     dir_list = []
     for (root, dirs, files) in os.walk(path):
         for dir in dirs:
-            dir_list.append(os.path.join(root,dir).replace("\\", "/") )        
+            dir_list.append(os.path.join(root,dir).replace("\\", "/") )
+            print 'hoge'
     return dir_list
     
 #def:data_extraction:aa=filepath
@@ -98,6 +99,16 @@ def IV(cc, dd, ee, ff):
         I[x].extend(Ip[x])
     return V, I
 
+def getPaths(list2):
+    Path = []
+    for x in list2:
+        fl = os.listdir(x)
+        for y in fl:
+            if 'Sweep_Limited' in y:
+                Path.append(x)
+                break
+    return Path
+
 #main
 print 'input file path'
 path1 = raw_input()
@@ -108,13 +119,7 @@ dlist = []
 dlist = getDirList(path1)
 
 Paths = []
-
-for x in dlist:
-    fl = os.listdir(x)
-    for y in fl:
-        if 'Sweep_Limited' in y:
-            Paths.append(x)
-            break
+Paths = getPaths(dlist)
         
 for path in Paths:
     path_name = path
