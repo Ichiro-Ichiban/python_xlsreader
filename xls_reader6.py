@@ -77,12 +77,11 @@ def plotMedian(Vd, Id, Vl, Il, path_name):
     graph_title = path_name [root_length:]
     plt.title(graph_title)
 
-"""
+
 def plotAll(a, Vd, Id, Vl, Il, path_name):
+    plt.figure()
     for x in range(a):
-        print x
-        plt.figure()
-        plt.subplot(3,2,x+1)
+        plt.subplot(2,3,x+1)
         plt.plot(Vd[x], Id[x])
         plt.plot(Vl[x], Il[x], 'k--')
         plt.xlim(-5,5)
@@ -91,10 +90,10 @@ def plotAll(a, Vd, Id, Vl, Il, path_name):
         plt.yscale('log')
         plt.xlabel('Voltage/ V')
         plt.ylabel('Current Density/ $ cm^2 V^{-1} s^{-1} $')
-        graph_title = path_name [root_length:] + 'TEG_' + x
+        graph_title = path_name [root_length:] + 'TEG_' + str(x+1)
         plt.title(graph_title)
         plt.tight_layout()
-"""
+
 
 #device_ab_IV:li=light-intensity(0:dark,1:1.62,2:5.0):dd, ee=filepathnega:nd=number of device
 def getIV(li, dd, ee, nd, path_name):
@@ -237,5 +236,5 @@ for path in file_path:
     Ilm = getMedian(Il_array)
 
     #plotting
-    plotMedian(Vdm, Idm, Vlm, Ilm, path)
-    #plotAll(1, Vdg, Idg, Vlg, Ilg, path)    
+    #plotMedian(Vdm, Idm, Vlm, Ilm, path)
+    plotAll(5, Vdg, Idg, Vlg, Ilg, path)    
